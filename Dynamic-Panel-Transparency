@@ -18,53 +18,53 @@ while true
 do
 	# if theme carrier file doesn't exist create it
 	if [ ! -f "$HOME/.local/bin/thm-crr.txt"  ]; then
-		touch  $HOME/.local/bin/thm-crr.txt
-		echo "theme:........." > $HOME/.local/bin/thm-crr.txt
+		touch  "$HOME"/.local/bin/thm-crr.txt
+		echo "theme:........." > "$HOME"/.local/bin/thm-crr.txt
 	fi
 	# get current theme and compare against theme carrier
 	ThemeName=$(gsettings get org.mate.Marco.general theme|cut -f2 -d"'")
-	ThemeCarrier=$(grep -i 'theme:' $HOME/.local/bin/thm-crr.txt|cut -f2 -d":")
+	ThemeCarrier=$(grep -i 'theme:' "$HOME"/.local/bin/thm-crr.txt|cut -f2 -d":")
 	if [ "$ThemeName" != "$ThemeCarrier" ]; then
 		# write theme name to theme carrier
-		echo "theme:$ThemeName" > $HOME/.local/bin/thm-crr.txt
+		echo "theme:$ThemeName" > "$HOME"/.local/bin/thm-crr.txt
 		# retrieve theme bg color and write to theme carrier
 		if [ -d "/usr/share/themes/$ThemeName" ]; then
 			if [ -f "/usr/share/themes/$ThemeName/gtk-3.0/gtk-main.css" ]; then
-				CR=$(echo "ibase=16; $(grep -i 'bg_color' /usr/share/themes/$ThemeName/gtk-3.0/gtk-main.css|cut -f3 -d" "|cut -c 2-3|head --bytes 2)"|bc)
-				CG=$(echo "ibase=16; $(grep -i 'bg_color' /usr/share/themes/$ThemeName/gtk-3.0/gtk-main.css|cut -f3 -d" "|cut -c 4-5|head --bytes 2)"|bc)
-				CB=$(echo "ibase=16; $(grep -i 'bg_color' /usr/share/themes/$ThemeName/gtk-3.0/gtk-main.css|cut -f3 -d" "|cut -c 6-7|head --bytes 2)"|bc)
-				echo "color:$CR,$CG,$CB" >> $HOME/.local/bin/thm-crr.txt
+				CR=$(echo "ibase=16; $(grep -i 'bg_color' /usr/share/themes/"$ThemeName"/gtk-3.0/gtk-main.css|cut -f3 -d" "|cut -c 2-3|head --bytes 2)"|bc)
+				CG=$(echo "ibase=16; $(grep -i 'bg_color' /usr/share/themes/"$ThemeName"/gtk-3.0/gtk-main.css|cut -f3 -d" "|cut -c 4-5|head --bytes 2)"|bc)
+				CB=$(echo "ibase=16; $(grep -i 'bg_color' /usr/share/themes/"$ThemeName"/gtk-3.0/gtk-main.css|cut -f3 -d" "|cut -c 6-7|head --bytes 2)"|bc)
+				echo "color:$CR,$CG,$CB" >> "$HOME"/.local/bin/thm-crr.txt
 			else 
-				CR=$(echo "ibase=16; $(grep -i 'bg_color' /usr/share/themes/$ThemeName/gtk-3.0/gtk.css|cut -f3 -d" "|cut -c 2-3|head --bytes 2)"|bc)
-				CG=$(echo "ibase=16; $(grep -i 'bg_color' /usr/share/themes/$ThemeName/gtk-3.0/gtk.css|cut -f3 -d" "|cut -c 4-5|head --bytes 2)"|bc)
-				CB=$(echo "ibase=16; $(grep -i 'bg_color' /usr/share/themes/$ThemeName/gtk-3.0/gtk.css|cut -f3 -d" "|cut -c 6-7|head --bytes 2)"|bc)
-				echo "color:$CR,$CG,$CB" >> $HOME/.local/bin/thm-crr.txt
+				CR=$(echo "ibase=16; $(grep -i 'bg_color' /usr/share/themes/"$ThemeName"/gtk-3.0/gtk.css|cut -f3 -d" "|cut -c 2-3|head --bytes 2)"|bc)
+				CG=$(echo "ibase=16; $(grep -i 'bg_color' /usr/share/themes/"$ThemeName"/gtk-3.0/gtk.css|cut -f3 -d" "|cut -c 4-5|head --bytes 2)"|bc)
+				CB=$(echo "ibase=16; $(grep -i 'bg_color' /usr/share/themes/"$ThemeName"/gtk-3.0/gtk.css|cut -f3 -d" "|cut -c 6-7|head --bytes 2)"|bc)
+				echo "color:$CR,$CG,$CB" >> "$HOME"/.local/bin/thm-crr.txt
 			fi
 		else
 			if [ -f "$HOME/.themes/$ThemeName/gtk-3.0/gtk-main.css" ]; then
-				CR=$(echo "ibase=16; $(grep -i 'bg_color' $HOME/.themes/$ThemeName/gtk-3.0/gtk-main.css|cut -f3 -d" "|cut -c 2-3|head --bytes 2)"|bc)
-				CG=$(echo "ibase=16; $(grep -i 'bg_color' $HOME/.themes/$ThemeName/gtk-3.0/gtk-main.css|cut -f3 -d" "|cut -c 4-5|head --bytes 2)"|bc)
-				CB=$(echo "ibase=16; $(grep -i 'bg_color' $HOME/.themes/$ThemeName/gtk-3.0/gtk-main.css|cut -f3 -d" "|cut -c 6-7|head --bytes 2)"|bc)
-				echo "color:$CR,$CG,$CB" >> $HOME/.local/bin/thm-crr.txt
+				CR=$(echo "ibase=16; $(grep -i 'bg_color' "$HOME"/.themes/"$ThemeName"/gtk-3.0/gtk-main.css|cut -f3 -d" "|cut -c 2-3|head --bytes 2)"|bc)
+				CG=$(echo "ibase=16; $(grep -i 'bg_color' "$HOME"/.themes/"$ThemeName"/gtk-3.0/gtk-main.css|cut -f3 -d" "|cut -c 4-5|head --bytes 2)"|bc)
+				CB=$(echo "ibase=16; $(grep -i 'bg_color' "$HOME"/.themes/"$ThemeName"/gtk-3.0/gtk-main.css|cut -f3 -d" "|cut -c 6-7|head --bytes 2)"|bc)
+				echo "color:$CR,$CG,$CB" >> "$HOME"/.local/bin/thm-crr.txt
 			else 
-				CR=$(echo "ibase=16; $(grep -i 'bg_color' $HOME/.themes/$ThemeName/gtk-3.0/gtk.css|cut -f3 -d" "|cut -c 2-3|head --bytes 2)"|bc)
-				CG=$(echo "ibase=16; $(grep -i 'bg_color' $HOME/.themes/$ThemeName/gtk-3.0/gtk.css|cut -f3 -d" "|cut -c 4-5|head --bytes 2)"|bc)
-				CB=$(echo "ibase=16; $(grep -i 'bg_color' $HOME/.themes/$ThemeName/gtk-3.0/gtk.css|cut -f3 -d" "|cut -c 6-7|head --bytes 2)"|bc)
-				echo "color:$CR,$CG,$CB" >> $HOME/.local/bin/thm-crr.txt
+				CR=$(echo "ibase=16; $(grep -i 'bg_color' "$HOME"/.themes/"$ThemeName"/gtk-3.0/gtk.css|cut -f3 -d" "|cut -c 2-3|head --bytes 2)"|bc)
+				CG=$(echo "ibase=16; $(grep -i 'bg_color' "$HOME"/.themes/"$ThemeName"/gtk-3.0/gtk.css|cut -f3 -d" "|cut -c 4-5|head --bytes 2)"|bc)
+				CB=$(echo "ibase=16; $(grep -i 'bg_color' "$HOME"/.themes/"$ThemeName"/gtk-3.0/gtk.css|cut -f3 -d" "|cut -c 6-7|head --bytes 2)"|bc)
+				echo "color:$CR,$CG,$CB" >> "$HOME"/.local/bin/thm-crr.txt
 			fi
 		fi
 	fi
 	# get theme bg color from theme carrier
-	Clrcrr=$(grep -i 'color:' $HOME/.local/bin/thm-crr.txt|cut -f2 -d":")
+	Clrcrr=$(grep -i 'color:' "$HOME"/.local/bin/thm-crr.txt|cut -f2 -d":")
 	MAX_FND=0
 	for w in $(xprop -notype -root _NET_CLIENT_LIST 2>/dev/null | cut -d'#' -f2 | tr ',' '\n' | awk '{print $1}')
    	do 
-                if [[ "$(xprop -id $w -notype _NET_WM_DESKTOP 2>/dev/null | cut -d' ' -f3)" -eq "$(xprop -root -notype _NET_CURRENT_DESKTOP 2>/dev/null | cut -d' ' -f3)" ]]
+                if [[ "$(xprop -id "$w" -notype _NET_WM_DESKTOP 2>/dev/null | cut -d' ' -f3)" -eq "$(xprop -root -notype _NET_CURRENT_DESKTOP 2>/dev/null | cut -d' ' -f3)" ]]
                 then
 
-		if xprop -id $w _NET_WM_STATE | grep -E "MAXIMIZED_HORZ.*MAXIMIZED_VERT|MAXIMIZED_VERT.*MAXIMIZED_HORZ" > /dev/null 2>&1
+		if xprop -id "$w" _NET_WM_STATE | grep -E "MAXIMIZED_HORZ.*MAXIMIZED_VERT|MAXIMIZED_VERT.*MAXIMIZED_HORZ" > /dev/null 2>&1
 		   then
-			if xprop -id $w WM_STATE | grep -E "window state: Normal" > /dev/null 2>&1
+			if xprop -id "$w" WM_STATE | grep -E "window state: Normal" > /dev/null 2>&1
 			then
 				MAX_FND=1
 				break
@@ -82,5 +82,6 @@ do
 		gsettings set org.mate.panel.toplevel.background:/org/mate/panel/toplevels/${PANEL}/background/ color "rgba($Clrcrr,$PANEL_ALPHA_REGULAR)"
 		CURR=0
 	fi
+	sleep 2
 done
 Exit 0
