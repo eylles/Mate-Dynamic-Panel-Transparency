@@ -9,7 +9,7 @@ This script provides the dynamic panel transparency feature to the MATE desktop 
 - It must be noticed that since the script reads the ```bg_color``` definition the panel color WILL match the window bakground color not the window border color, this means light themes will have light panel colors whereas dark themes will have dark panel colors.
 However this can be easily fixed by just writing the proper RGB values to the file thm-crr.txt that will be created by the script in ```"$HOME"/.local/bin/thm-crr.txt```.
 
-- Although i have checked the script with shellcheck and it should run in any POSIX compliant shell the specifics of some commands may still fall within the GNU implementation and as such could miss behave in BSD systems.
+- Although i have checked the script with shellcheck and it should run in any POSIX compliant shell the specifics of some commands may still fall within the GNU implementation and as such could missbehave in BSD systems.
 
 - This script is a modification of the one that can be found in the ubunutu-mate community forums <a href="https://ubuntu-mate.community/t/change-the-top-panel-opacity-when-a-window-is-maximized/18049">Here</a>
 
