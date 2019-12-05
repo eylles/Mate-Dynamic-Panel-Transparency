@@ -2,7 +2,7 @@
 install Dynamic-Panel-Transparency $HOME/.local/bin/Dynamic-Panel-Transparency
 grep -qxF 'PATH="$HOME/.local/bin:${PATH}"' $HOME/.bashrc || echo 'PATH="$HOME/.local/bin:${PATH}"' >> $HOME/.bashrc
 grep -qxF 'export PATH' $HOME/.bashrc || echo 'export PATH' >> $HOME/.bashrc
-source ~/.bashrc
+source $HOME/.bashrc
 touch dynamic-panel-transparency.desktop
 echo "[Desktop Entry]
 Type=Application
