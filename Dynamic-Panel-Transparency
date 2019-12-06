@@ -30,26 +30,50 @@ do
 		# retrieve theme bg color and write to theme carrier
 		if [ -d "/usr/share/themes/$ThemeName" ]; then
 			if [ -f "/usr/share/themes/$ThemeName/gtk-3.0/gtk-main.css" ]; then
-				CR=$(echo "ibase=16; $(grep -i 'bg_color' /usr/share/themes/"$ThemeName"/gtk-3.0/gtk-main.css|cut -f3 -d" "|cut -c 2-3|head --bytes 2)"|bc)
-				CG=$(echo "ibase=16; $(grep -i 'bg_color' /usr/share/themes/"$ThemeName"/gtk-3.0/gtk-main.css|cut -f3 -d" "|cut -c 4-5|head --bytes 2)"|bc)
-				CB=$(echo "ibase=16; $(grep -i 'bg_color' /usr/share/themes/"$ThemeName"/gtk-3.0/gtk-main.css|cut -f3 -d" "|cut -c 6-7|head --bytes 2)"|bc)
+				CRc=$(grep -i 'bg_color' /usr/share/themes/"$ThemeName"/gtk-3.0/gtk-main.css|cut -f3 -d" "|cut -c 2-3|head --bytes 2)
+				CRc=$(echo $CRc | tr '[:lower:]' '[:upper:]')
+				CR=$(echo "ibase=16; $CRc"|bc)
+				CGc=$(grep -i 'bg_color' /usr/share/themes/"$ThemeName"/gtk-3.0/gtk-main.css|cut -f3 -d" "|cut -c 4-5|head --bytes 2)
+				CGc=$(echo $CGc | tr '[:lower:]' '[:upper:]')
+				CG=$(echo "ibase=16; $CGc"|bc)
+				CBc=$(grep -i 'bg_color' /usr/share/themes/"$ThemeName"/gtk-3.0/gtk-main.css|cut -f3 -d" "|cut -c 6-7|head --bytes 2)
+				CBc=$(echo $CBc | tr '[:lower:]' '[:upper:]')
+				CB=$(echo "ibase=16; $CBc"|bc)
 				echo "color:$CR,$CG,$CB" >> "$HOME"/.local/bin/thm-crr.txt
 			else 
-				CR=$(echo "ibase=16; $(grep -i 'bg_color' /usr/share/themes/"$ThemeName"/gtk-3.0/gtk.css|cut -f3 -d" "|cut -c 2-3|head --bytes 2)"|bc)
-				CG=$(echo "ibase=16; $(grep -i 'bg_color' /usr/share/themes/"$ThemeName"/gtk-3.0/gtk.css|cut -f3 -d" "|cut -c 4-5|head --bytes 2)"|bc)
-				CB=$(echo "ibase=16; $(grep -i 'bg_color' /usr/share/themes/"$ThemeName"/gtk-3.0/gtk.css|cut -f3 -d" "|cut -c 6-7|head --bytes 2)"|bc)
+				CRc=$(grep -i 'bg_color' /usr/share/themes/"$ThemeName"/gtk-3.0/gtk.css|cut -f3 -d" "|cut -c 2-3|head --bytes 2)
+				CRc=$(echo $CRc | tr '[:lower:]' '[:upper:]')
+				CR=$(echo "ibase=16; $CRc"|bc)
+				CGc=$(grep -i 'bg_color' /usr/share/themes/"$ThemeName"/gtk-3.0/gtk.css|cut -f3 -d" "|cut -c 4-5|head --bytes 2)
+				CGc=$(echo $CGc | tr '[:lower:]' '[:upper:]')
+				CG=$(echo "ibase=16; $CGc"|bc)
+				CBc=$(grep -i 'bg_color' /usr/share/themes/"$ThemeName"/gtk-3.0/gtk.css|cut -f3 -d" "|cut -c 6-7|head --bytes 2)
+				CBc=$(echo $CBc | tr '[:lower:]' '[:upper:]')
+				CB=$(echo "ibase=16; $CBc"|bc)
 				echo "color:$CR,$CG,$CB" >> "$HOME"/.local/bin/thm-crr.txt
 			fi
 		else
 			if [ -f "$HOME/.themes/$ThemeName/gtk-3.0/gtk-main.css" ]; then
-				CR=$(echo "ibase=16; $(grep -i 'bg_color' "$HOME"/.themes/"$ThemeName"/gtk-3.0/gtk-main.css|cut -f3 -d" "|cut -c 2-3|head --bytes 2)"|bc)
-				CG=$(echo "ibase=16; $(grep -i 'bg_color' "$HOME"/.themes/"$ThemeName"/gtk-3.0/gtk-main.css|cut -f3 -d" "|cut -c 4-5|head --bytes 2)"|bc)
-				CB=$(echo "ibase=16; $(grep -i 'bg_color' "$HOME"/.themes/"$ThemeName"/gtk-3.0/gtk-main.css|cut -f3 -d" "|cut -c 6-7|head --bytes 2)"|bc)
+				CRc=$(grep -i 'bg_color' "$HOME"/.themes/"$ThemeName"/gtk-3.0/gtk-main.css|cut -f3 -d" "|cut -c 2-3|head --bytes 2)
+				CRc=$(echo $CRc | tr '[:lower:]' '[:upper:]')
+				CR=$(echo "ibase=16; $CRc"|bc)
+				CGc=$(grep -i 'bg_color' "$HOME"/.themes/"$ThemeName"/gtk-3.0/gtk-main.css|cut -f3 -d" "|cut -c 4-5|head --bytes 2)
+				CGc=$(echo $CGc | tr '[:lower:]' '[:upper:]')
+				CG=$(echo "ibase=16; $CGc"|bc)
+				CBc=$(grep -i 'bg_color' "$HOME"/.themes/"$ThemeName"/gtk-3.0/gtk-main.css|cut -f3 -d" "|cut -c 6-7|head --bytes 2)
+				CBc=$(echo $CBc | tr '[:lower:]' '[:upper:]')
+				CB=$(echo "ibase=16; $CBc"|bc)
 				echo "color:$CR,$CG,$CB" >> "$HOME"/.local/bin/thm-crr.txt
 			else 
-				CR=$(echo "ibase=16; $(grep -i 'bg_color' "$HOME"/.themes/"$ThemeName"/gtk-3.0/gtk.css|cut -f3 -d" "|cut -c 2-3|head --bytes 2)"|bc)
-				CG=$(echo "ibase=16; $(grep -i 'bg_color' "$HOME"/.themes/"$ThemeName"/gtk-3.0/gtk.css|cut -f3 -d" "|cut -c 4-5|head --bytes 2)"|bc)
-				CB=$(echo "ibase=16; $(grep -i 'bg_color' "$HOME"/.themes/"$ThemeName"/gtk-3.0/gtk.css|cut -f3 -d" "|cut -c 6-7|head --bytes 2)"|bc)
+				CRc=$(grep -i 'bg_color' "$HOME"/.themes/"$ThemeName"/gtk-3.0/gtk.css|cut -f3 -d" "|cut -c 2-3|head --bytes 2)
+				CRc=$(echo $CRc | tr '[:lower:]' '[:upper:]')
+				CR=$(echo "ibase=16; $CRc"|bc)
+				CGc=$(grep -i 'bg_color' "$HOME"/.themes/"$ThemeName"/gtk-3.0/gtk.css|cut -f3 -d" "|cut -c 4-5|head --bytes 2)
+				CGc=$(echo $CGc | tr '[:lower:]' '[:upper:]')
+				CG=$(echo "ibase=16; $CGc"|bc)
+				CBc=$(grep -i 'bg_color' "$HOME"/.themes/"$ThemeName"/gtk-3.0/gtk.css|cut -f3 -d" "|cut -c 6-7|head --bytes 2)
+				CBc=$(echo $CBc | tr '[:lower:]' '[:upper:]')
+				CB=$(echo "ibase=16; $CBc"|bc)
 				echo "color:$CR,$CG,$CB" >> "$HOME"/.local/bin/thm-crr.txt
 			fi
 		fi
